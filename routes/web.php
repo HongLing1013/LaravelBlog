@@ -26,19 +26,21 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/posts/admin' , [ PostController::class, 'admin'] ); //管理頁面
-Route::get('/posts/show/{post}' , [ PostController::class, 'show'] ); //文章呈現頁面
-Route::get('/posts/create' , [ PostController::class, 'create'] ); //Create
+Route::middleware(['auth'])->group(function(){
+    Route::get('/posts/admin' , [ PostController::class, 'admin'] ); //管理頁面
+    Route::get('/posts/show/{post}' , [ PostController::class, 'show'] ); //文章呈現頁面
+    Route::post('/posts' , [ PostController::class, 'store'] ); //Create
+    Route::put('/posts/{post}' , [ PostController::class, 'update'] ); //Update
+    Route::delete('/posts/{post}' , [ PostController::class, 'destroy'] ); //Delete
+    Route::get('/posts/create' , [ PostController::class, 'create'] ); //Create
+    Route::get('/posts/{post}/edit',[ PostController::class, 'edit'] ); //Update
+});
+
 
 // CRUD
-Route::post('/posts' , [ PostController::class, 'store'] ); //Create
 Route::get('/posts/{post}' , [ PostController::class, 'show'] ); //Read
-Route::put('/posts/{post}' , [ PostController::class, 'update'] ); //Update
-Route::delete('/posts/{post}' , [ PostController::class, 'destroy'] ); //Delete
 
 // 3 routing: create / edit / list
-Route::get('/posts/create' , [ PostController::class, 'create'] ); //Create
-Route::get('/posts/{post}/edit',[ PostController::class, 'edit'] ); //Update
 Route::get('/posts', [ PostController::class, 'index'] ); //Read // laravel 8.1的寫法
 // Route::get('/posts', 'PostController@index'); //Read // laravel 舊的寫法
 
@@ -53,3 +55,7 @@ Route::get('/posts', [ PostController::class, 'index'] ); //Read // laravel 8.1�
 // Route::get('/posts/{id}', function ($id) {
 //     return view('posts.show');
 // });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
