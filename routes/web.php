@@ -13,4 +13,21 @@
 
 Route::get('/', function () {
     return view('welcome');
+    return 'index';
+});
+
+Route::get('/about', function () {
+    return 'about';
+});
+
+Route::get('/content', function () {
+    return 'content';
+});
+
+Route::get('/posts', function () {
+    return 'posts.list';
+});
+
+Route::get('/posts/{id}', function ($id) {
+    return 'posts.show';
 });
