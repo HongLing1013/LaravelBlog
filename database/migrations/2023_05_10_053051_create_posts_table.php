@@ -32,9 +32,9 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign(['user_id']); //移除關聯, 這裡的陣列內放的是欄位名稱
-        });
+        // Schema::table('posts', function (Blueprint $table) {
+        //     $table->dropForeign(['user_id']); //移除關聯, 這裡的陣列內放的是欄位名稱
+        // });
 
         Schema::dropIfExists('posts');
     }

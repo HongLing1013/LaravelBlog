@@ -28,7 +28,10 @@
                     <li class="list-group-item clearfix">
                         @php // 如果有使用pull-right這個屬性的話 上一層要加clearfix 否則會跑版
                         @endphp
-                        {{ $post->title }}
+                        <div class="pull-left">
+                            <div class="title">{{ $post->title }}</div>
+                            <small class="author">{{ $post->user->name }}</small>
+                        </div>
                         <span class="pull-right">
                             <a href="/posts/show/{{ $post->id }}" class="btn btn-default">View</a>
                             <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit</a>

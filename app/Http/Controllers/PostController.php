@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         $post = new Post;
         $post->fill($request->all());//把從create.blase.php收到的資料填入post存入$post
-        // $post->user_id = Auth::id(); //取得USER ID
+        $post->user_id = Auth::id(); //取得USER ID
         $post->save();//存入資料庫
 
         return redirect('/posts/admin');
