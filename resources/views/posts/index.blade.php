@@ -50,7 +50,7 @@
                             <p>{{ \Illuminate\Support\Str::limit($post->content, 250) }}</p>
                             {{-- 下面是laravel 6.0 以前的作法 --}}
                             {{-- <p>{{ str_limit($post->content) , 250 }}</p> --}}
-                            <a href="/posts/9487" class="btn btn-small btn-dark-solid  "> Continue Reading</a>
+                            <a href="/posts/{{ $post->id }}" class="btn btn-small btn-dark-solid  "> Continue Reading</a>
                         </div>
                     </div>
                     <!--classic image post-->

@@ -39,7 +39,11 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('posts.showByAdmin' , ['post' => $post]);
+        if(Auth::check()){
+            return view('posts.showByAdmin' , ['post' => $post]);
+        }else{
+            return view('posts.show' , ['post' => $post]);
+        }
     }
 
     public function edit(Post $post)
