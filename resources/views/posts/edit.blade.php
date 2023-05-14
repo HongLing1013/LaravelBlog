@@ -22,6 +22,15 @@
 @section('content')
 <div class="page-content">
     <div class="container">
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $key => $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @php
             // 因為網址已經有帶id 所以不需要 input hidden去帶id
         @endphp

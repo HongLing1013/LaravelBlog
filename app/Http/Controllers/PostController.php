@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreBlogPost;
 
 class PostController extends Controller
 {
@@ -27,8 +28,9 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreBlogPost $request)
     {
+
         $post = new Post;
         $post->fill($request->all());//把從create.blase.php收到的資料填入post存入$post
         $post->user_id = Auth::id(); //取得USER ID
@@ -53,8 +55,9 @@ class PostController extends Controller
 
     // 因為update來的時候很多筆資料需要承接，所以需要用到Request 
     // Request 要養成好習慣 寫在前面
-    public function update(Request $request , Post $post)
+    public function update(StoreBlogPost $request , Post $post)
     {
+
         $post->fill($request->all());
         $post->save();
 
