@@ -1,6 +1,9 @@
 @php
   // 從路徑判斷是否為新增頁面
-    $isCreate = request()->is('*create');
+    // $isCreate = request()->is('*create');
+    // $actionUrl = ($isCreate) ? '/posts' : '/posts/' . $post->id;
+    // 判斷$post是否存在 存在就是舊的
+    $isCreate = !$post->exists;
     $actionUrl = ($isCreate) ? '/posts' : '/posts/' . $post->id;
 @endphp
 
