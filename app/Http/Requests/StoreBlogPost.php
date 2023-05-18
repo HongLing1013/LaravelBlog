@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreBlogPost extends FormRequest
 {
@@ -13,7 +14,12 @@ class StoreBlogPost extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $post = request()->post; //找到文章
+        if ($post->user_id === Auth::id()){//檢查文章的發文者是否跟使用者id吻合
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
