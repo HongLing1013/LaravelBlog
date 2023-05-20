@@ -13,4 +13,9 @@ class Post extends Model
         // 一對一關聯
         return $this->belongsTo('App\Models\User');
     }
+
+    public function category(){
+        // 一對一關聯
+        return $this->belongsTo('App\Models\Category');
+    }
 }
