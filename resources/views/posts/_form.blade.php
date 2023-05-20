@@ -30,5 +30,5 @@
   <textarea class="form-control" name="content" cols="80" rows="8">{{ $post->content }}</textarea>
 </div>
 <button type="submit" class="btn btn-primary">Submit</button>
-<button type="button" class="btn btn-default" onclick="window.history.back()">Cancel</button>
+<button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancel</button>
 </form>
