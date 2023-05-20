@@ -23,7 +23,7 @@
 <div class="page-content">
     <div class="container">
 
-        @include ('posts._form')
+        @include ('posts._form', ['post' => $post])
         
     </div>
 </div>
