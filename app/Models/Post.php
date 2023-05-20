@@ -18,4 +18,10 @@ class Post extends Model
         // 一對一關聯
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function tags()
+    {
+        // 多對多關聯
+        return $this->belongsToMany('App\Models\Tag');
+    }
 }
