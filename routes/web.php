@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function(){
     Route::delete('/posts/{post}' , [ PostController::class, 'destroy'] ); //Delete
     Route::get('/posts/create' , [ PostController::class, 'create'] ); //Create
     Route::get('/posts/{post}/edit',[ PostController::class, 'edit'] ); //Update
+
+    Route::resource('categories' , 'CategoryController')->except(['show']); //分類除了show以外的CRUD
 });
 
 
