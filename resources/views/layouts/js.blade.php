@@ -28,5 +28,5 @@
     <script src="/assets/vendor/wow/wow.min.js"></script>
     <script src="/assets/js/scripts.js"></script>
     {{-- 自訂義JS --}}
-    <script src="/js/app.js"></script>
+    <script src="/js/frontend.js"></script>
     <!-- endinject -->
