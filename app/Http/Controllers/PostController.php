@@ -52,7 +52,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('posts.edit' , ['post' => $post]);
+        $categories = Category::all();
+        return view('posts.edit' , ['post' => $post , 'categories' => $categories]);
     }
 
     // 因為update來的時候很多筆資料需要承接，所以需要用到Request 

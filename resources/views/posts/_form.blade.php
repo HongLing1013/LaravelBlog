@@ -30,7 +30,7 @@
   <select class="form-control" name="category_id">
     <option selected value>請選擇分類</option>
     @foreach ($categories as $key => $category)
-      <option value="{{ $category->id }}">{{ $category->name }}</option>
+      <option value="{{ $category->id }}" @if($post->category_id==$category->id) selected @endif>{{ $category->name }}</option>
     @endforeach
   </select>
 </div>
