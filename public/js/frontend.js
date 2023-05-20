@@ -28,3 +28,15 @@ deleteCategory = function(id){
       });
   }
 }
+
+deleteTag = function(id){
+  let result = confirm('確定刪除嗎?');
+  // console.log(result);
+  if(result){
+      let actionUrl = '/tags/' + id;
+      // console.log(actionUrl);
+      $.post(actionUrl, {_method: 'delete'}).done(function(){
+          location.href = '/tags';
+      });
+  }
+}
