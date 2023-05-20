@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/posts/{post}' , [ PostController::class, 'show'] ); //Read
 
 // 3 routing: create / edit / list
+Route::get('/posts/category/{category}', [ PostController::class, 'indexWithCategory'] );
 Route::get('/posts', [ PostController::class, 'index'] ); //Read // laravel 8.1的寫法
 // Route::get('/posts', 'PostController@index'); //Read // laravel 舊的寫法
 

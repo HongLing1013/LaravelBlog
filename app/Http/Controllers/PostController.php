@@ -20,8 +20,18 @@ class PostController extends Controller
     {
         // 撈文章
         $posts = Post::all();
+        $categories = Category::all();
 
-        return view('posts.index' , ['post' => $posts]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
+        return view('posts.index' , ['post' => $posts , 'categories' => $categories]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
+    }
+
+    public function indexWithCategory(Category $category)
+    {
+        // 只抓取該分類的文章
+        $posts = Post::where('category_id' , $category->id)->get();
+        $categories = Category::all();
+
+        return view('posts.index' , ['post' => $posts , 'categories' => $categories]);
     }
 
     public function create()

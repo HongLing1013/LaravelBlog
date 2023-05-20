@@ -5,7 +5,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="text-uppercase">Blog Listing</h4>
+                <h4 class="text-uppercase">
+                    Blog Listing
+                    @if(request()->category)
+                        / {{ request()->category->name }}
+                    @endif
+                </h4>
                 <ol class="breadcrumb">
                     <li><a href="/">Home</a>
                     </li>
@@ -80,33 +85,6 @@
                 </div>
                 <div class="col-md-4">
 
-                    <!--search widget-->
-                    <div class="widget">
-                        <form class="form-inline form" role="form">
-                            <div class="search-row">
-                                <button class="search-btn" type="submit" title="Search">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                                <input type="text" class="form-control" placeholder="Search...">
-                            </div>
-                        </form>
-                    </div>
-                    <!--search widget-->
-
-                    <!--author widget-->
-                    <div class="widget">
-                        <div class="heading-title-alt text-left heading-border-bottom">
-                            <h6 class="text-uppercase">about author</h6>
-                        </div>
-                        <div class="full-width avatar">
-                            <img src="/assets/img/post/avatar.jpg" alt="" />
-                        </div>
-                        <p>Persuaded to return to the shoemaker's shop, young Edward struggled on till three years of his wretched apprenticeship had passed over.</p>
-
-                        <span class="">- Nelson Leonard</span>
-                    </div>
-                    <!--author widget-->
-
                     <!--latest post widget-->
                     <div class="widget">
                         <div class="heading-title-alt text-left heading-border-bottom">
@@ -150,37 +128,15 @@
                     </div>
                     <!--latest post widget-->
 
-                    <!--follow us widget-->
-                    <div class="widget">
-                        <div class="heading-title-alt text-left heading-border-bottom">
-                            <h6 class="text-uppercase">follow us</h6>
-                        </div>
-                        <div class="widget-social-link circle">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
-                        </div>
-                    </div>
-                    <!--follow us widget-->
-
                     <!--category widget-->
                     <div class="widget">
                         <div class="heading-title-alt text-left heading-border-bottom">
                             <h6 class="text-uppercase">category</h6>
                         </div>
                         <ul class="widget-category">
-                            <li><a href="#">Animals</a>
-                            </li>
-                            <li><a href="#">Landscape</a>
-                            </li>
-                            <li><a href="#">Portrait</a>
-                            </li>
-                            <li><a href="#">Wild Life</a>
-                            </li>
-                            <li><a href="#">Video</a>
-                            </li>
+                            @foreach($categories as $category)
+                                <li><a href="/posts/category/{{ $category->id }}">{{ $category->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <!--category widget-->
