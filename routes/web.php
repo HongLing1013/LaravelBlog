@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/posts/{post}/edit',[ PostController::class, 'edit'] ); //Update
 
     Route::resource('categories' , 'CategoryController')->except(['show']); //分類除了show以外的CRUD
+    Route::resource('tags' , 'TagController')->only(['index' , 'destroy']); //tag只要index跟destroy
 });
 
 
