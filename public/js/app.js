@@ -24,7 +24,7 @@ $.ajaxSetup({
         let actionUrl = '/categories/' + id;
         // console.log(actionUrl);
         $.post(actionUrl, {_method: 'delete'}).done(function(){
-            location.href = '/categories/admin';
+            location.href = '/categories';
         });
     }
   }
