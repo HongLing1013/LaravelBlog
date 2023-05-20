@@ -39,6 +39,19 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item">
+                            <a href="/posts/admin" class="nav-link">Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/categories" class="nav-link">Category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/tags" class="nav-link">Tags</a>
+                        </li>
+
+
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
