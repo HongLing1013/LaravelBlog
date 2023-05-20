@@ -24,6 +24,9 @@
 <div class="page-content">
     <div class="container">
         <h1 class="mb-0">{{ $post->title }}</h1>
+        @if(isset($post->category))
+            <small class="d-block text-muteed">{{ $post->category->name }}</small>
+        @endif
         <small class="author"> {{ $post->user->name }} </small>
         <div class="toolbox text-left mt-3">
             <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit</a>
