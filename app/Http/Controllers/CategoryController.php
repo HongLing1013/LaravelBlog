@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategory;
 
 class CategoryController extends Controller
 {
@@ -35,7 +36,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategory $request) // 使用StoreCategory承接表單資料 在儲存之前驗證
     {
         $category = new Category;
         $category->fill($request->all());
@@ -62,7 +63,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(StoreCategory $request, Category $category)
     {
         $category->fill( $request->all() );
         $category->save();
