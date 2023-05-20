@@ -16,7 +16,7 @@ $.ajaxSetup({
         });
     }
   }
-
+  
   deleteCategory = function(id){
     let result = confirm('確定刪除嗎?');
     // console.log(result);
