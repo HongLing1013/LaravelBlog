@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
-    protected $fillable = [ 'title' , 'content' ]; // 可以被批量賦值的欄位
+    protected $fillable = [ 'title' , 'content' , 'category_id']; // 可以被批量賦值的欄位
 
     public function user(){
         // 一對一關聯

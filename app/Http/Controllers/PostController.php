@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBlogPost;
 
@@ -26,12 +27,12 @@ class PostController extends Controller
     public function create()
     {
         $post = new Post;
-        return view('posts.create' , ['post' => $post]);
+        $categories = Category::all();
+        return view('posts.create' , ['post' => $post , 'categories' => $categories]);
     }
 
     public function store(StoreBlogPost $request)
     {
-
         $post = new Post;
         $post->fill($request->all());//把從create.blase.php收到的資料填入post存入$post
         $post->user_id = Auth::id(); //取得USER ID
