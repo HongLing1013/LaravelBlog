@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.app')
 
 @section('page-title')
 <section class="page-title">
@@ -7,11 +7,11 @@
             <div class="col-md-12">
                 <h4 class="text-uppercase">Edit Post</h4>
                 <ol class="breadcrumb">
-                    <li><a href="/">Home</a>
+                    <li class="breadcrumb-item"><a href="/">Home</a>
                     </li>
-                    <li class="active"><a href="/posts/admin">Blog Admin Panel</a>
+                    <li class="breadcrumb-item active"><a href="/posts/admin">Blog Admin Panel</a>
                     </li>
-                    <li class="active">Edit Post</li>
+                    <li class="breadcrumb-item active">Edit Post</li>
                 </ol>
             </div>
         </div>
