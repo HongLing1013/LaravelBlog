@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $cateories = Category::all();
+        return view('categories.index',['categories' => $cateories]);
     }
 
     /**
@@ -24,7 +25,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $category = new Category;
+        return view('categories.create',['category' => $category]);
     }
 
     /**
@@ -35,7 +37,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category;
+        $category->fill($request->all());
+        $category->save();
+
+        return redirect('/categories')->with('message','新增分類成功!');
     }
 
     /**
