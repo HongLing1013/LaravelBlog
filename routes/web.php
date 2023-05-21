@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('tags' , 'TagController')->only(['index' , 'destroy']); //tag只要index跟destroy
 });
 
+Route::resource('comment' , 'CommentController')->only(['store' , 'update' , 'destroy']); //tag只要index跟destroy
 
 // CRUD
 Route::get('/posts/{post}' , [ PostController::class, 'show'] ); //Read
