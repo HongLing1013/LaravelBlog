@@ -60,7 +60,7 @@ class PostController extends Controller
          * 所以要處理路徑
          * ====================================================== */
         $path = $request->file('thumbnail')->store('public/thumbnails'); //把圖片存到public/thumbnails資料夾下
-        $path = str_replace('public/','storage/',$path); //把public/取代成storage/
+        $path = str_replace('public/','/storage/',$path); //把public/取代成storage/
 
         $post = new Post;
         $post->fill($request->all());//把從create.blase.php收到的資料填入post存入$post

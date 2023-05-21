@@ -33,6 +33,11 @@
             <a href="/posts/{{ $post->id }}/edit" class="btn btn-primary">Edit</a>
             <button class="btn btn-danger" onclick="deletePost({{ $post->id }})">Delete</button>
         </div>
+        @if(!$post->thumbnail)
+            <div class="text-danger">沒有圖片</div>
+        @else
+            <img width="640" src="{{ $post->thumbnail }}" alt="thumbnail">
+        @endif
         <div class="content">
             {{ $post->content }}
         </div>
