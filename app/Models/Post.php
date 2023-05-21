@@ -25,6 +25,11 @@ class Post extends Model
         return $this->belongsToMany('App\Models\Tag');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
     public function tagsString()
     {
         $tagsName = [];
