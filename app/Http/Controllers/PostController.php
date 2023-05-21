@@ -98,8 +98,9 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        $categories = Category::all();
-        return view('posts.show' , ['post' => $post , 'categories' => $categories]);
+        $prevPostId = Post::where('id' , '<' , $post->id)->max('id');
+        $nextPostId = Post::where('id' , '>' , $post->id)->min('id');
+        return view('posts.show' , ['post' => $post , 'prevPostId' => $prevPostId , 'nextPostId' => $nextPostId]);
     }
 
     public function showByAdmin(Post $post)
