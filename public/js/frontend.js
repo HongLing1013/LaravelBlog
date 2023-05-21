@@ -63,9 +63,13 @@ $('form.update-comment').submit(function(e){
   e.preventDefault(); // 阻擋預設送出行為
 
   let comment = $(e.currentTarget).find('[name="comment"]').val();
+  let post_id = $(e.currentTarget).find('[name="post_id"]').val();
+  let name = $(e.currentTarget).find('[name="name"]').val();
 
   $.post($(e.currentTarget).attr('action'), {// 送出的資料
     _method: 'put',
+    post_id: post_id,
+    name: name,
     comment: comment,
   }).done(function(data){// 成功後的處理
     $(e.currentTarget).closest('.comment-body').toggleClass('edit');// 切換回原本的留言模式
