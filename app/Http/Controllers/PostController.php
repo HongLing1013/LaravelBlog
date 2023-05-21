@@ -117,7 +117,14 @@ class PostController extends Controller
     // Request 要養成好習慣 寫在前面
     public function update(StoreBlogPost $request , Post $post)
     {
+        
         $post->fill($request->all());
+        if(!is_null($request->file('thumbnail'))){
+            $path = $request->file('thumbnail')->store('public/thumbnails'); //把圖片存到public/thumbnails資料夾下
+            $path = str_replace('public/','/storage/',$path); //把public/取代成storage/
+            
+            $post->thumbnail = $path;
+        }
         $post->save();
 
         // 刪除原本的tags 避免重複儲存
