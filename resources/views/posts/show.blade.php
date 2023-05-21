@@ -256,6 +256,16 @@
                             <h4 class="text-uppercase">Leave a Comments</h4>
                         </div>
 
+                        @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $key => $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
                         <form method="post" action="/comments" id="form" role="form" class="blog-comments">
                             
                             @csrf
@@ -266,12 +276,16 @@
 
                                 <div class="col-md-6 form-group">
                                     <!-- Name -->
-                                    <input type="text" name="name" id="name" class=" form-control" placeholder="Name *" maxlength="100" required="">
+                                    @if(Auth::check())
+                                        <input type="text" name="name" id="name" class=" form-control" placeholder="Name *" maxlength="100" value="{{ Auth::user()->name }}" required>
+                                    @else
+                                        <input type="text" name="name" id="name" class=" form-control" placeholder="Name *" maxlength="100" required>
+                                    @endif
                                 </div>
 
                                 <!-- Comment -->
                                 <div class="form-group col-md-12">
-                                    <textarea name="comment" id="text" class=" form-control" rows="6" placeholder="Comment" maxlength="400"></textarea>
+                                    <textarea name="comment" id="text" class=" form-control" rows="6" placeholder="Comment" maxlength="400" required></textarea>
                                 </div>
 
                                 <!-- Send Button -->
