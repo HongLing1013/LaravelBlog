@@ -22,8 +22,9 @@ class PostController extends Controller
         // 撈文章
         $posts = Post::all();
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('posts.index' , ['post' => $posts , 'categories' => $categories]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
+        return view('posts.index' , ['post' => $posts , 'categories' => $categories , 'tags' => $tags]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
     }
 
     public function indexWithCategory(Category $category)
@@ -33,6 +34,16 @@ class PostController extends Controller
         $categories = Category::all();
 
         return view('posts.index' , ['post' => $posts , 'categories' => $categories]);
+    }
+
+    public function indexWithTag(Tag $tag)
+    {
+        $posts = $tag->posts;
+        $categories = Category::all();
+        $tags = Tag::has('posts')->withCount('posts')->orderBy('posts_count','desc')->get(); //只抓有文章的tag
+
+        return view('posts.index' , ['post' => $posts , 'categories' => $categories , 'tags' => $tags]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
+   
     }
 
     public function create()
