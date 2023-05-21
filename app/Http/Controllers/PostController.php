@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBlogPost;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -50,9 +51,21 @@ class PostController extends Controller
 
     public function store(StoreBlogPost $request)
     {
+        /* 處理圖片上傳 */
+
+        /* =======================================================
+         * 傳來的路徑存在storage/app/public/thumbnails資料夾下
+         * url會是http://localhost:8000/storage/thumbnails/xxxxx.jpg
+         * 直接log出來的路徑會是public/thumbnails/xxxxx.jpg"
+         * 所以要處理路徑
+         * ====================================================== */
+        $path = $request->file('thumbnail')->store('public/thumbnails'); //把圖片存到public/thumbnails資料夾下
+        $path = str_replace('public/','storage/',$path); //把public/取代成storage/
+
         $post = new Post;
         $post->fill($request->all());//把從create.blase.php收到的資料填入post存入$post
         $post->user_id = Auth::id(); //取得USER ID
+        $post->thumbnail = $path; //把路徑存入資料庫
         $post->save();//存入資料庫
 
         $tags = $this->stringToTags($request->tags);
