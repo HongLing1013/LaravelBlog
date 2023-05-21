@@ -28,7 +28,7 @@ Route::get('/contact', function () {
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/posts/admin' , [ PostController::class, 'admin'] ); //管理頁面
-    Route::get('/posts/show/{post}' , [ PostController::class, 'show'] ); //文章呈現頁面
+    Route::get('/posts/show/{post}' , [ PostController::class, 'showByAdmin'] ); //文章呈現頁面
     Route::post('/posts' , [ PostController::class, 'store'] ); //Create
     Route::put('/posts/{post}' , [ PostController::class, 'update'] ); //Update
     Route::delete('/posts/{post}' , [ PostController::class, 'destroy'] ); //Delete
