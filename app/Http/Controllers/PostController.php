@@ -21,9 +21,9 @@ class PostController extends Controller
     public function index()
     {
         // 撈文章
-        $posts = Post::all();
+        $posts = Post::paginate(5);
 
-        return view('posts.index' , ['post' => $posts ]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
+        return view('posts.index' , ['posts' => $posts ]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
     }
 
     public function indexWithCategory(Category $category)
