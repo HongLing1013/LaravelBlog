@@ -40,3 +40,7 @@ deleteTag = function(id){
       });
   }
 }
+
+toggleCommentForm = function(e){
+  $(e.currentTarget).closest('.comment-info').siblings('.comment-body').toggleClass('edit')
+}
