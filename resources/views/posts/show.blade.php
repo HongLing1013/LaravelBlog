@@ -43,17 +43,14 @@
                         <p>{{ $post->content }}</p>
 
                         <div class="inline-block">
-
-                            <div class="widget-tags">
-                                <h6 class="text-uppercase">Tags </h6>
-                                <a href="">Portfolio</a>
-                                <a href="">Design</a>
-                                <a href="">Link</a>
-                                <a href="">Gallery</a>
-                                <a href="">Video</a>
-                                <a href="">Clean</a>
-                                <a href="">Retina</a>
-                            </div>
+                            @if($post->tags->count()>0)
+                                <div class="widget-tags">
+                                    <h6 class="text-uppercase">Tags </h6>
+                                    @foreach ($post->tags as $key => $tag)
+                                        <a href="#">{{ $tag->name }}</a>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
 
 
