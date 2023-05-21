@@ -1,5 +1,6 @@
 @php
     $latestPosts = \App\Models\Post::orderBy('created_at','desc')->take(3)->get();
+    $latestComments = \App\Models\Comment::orderBy('created_at','desc')->take(4)->get();
     $categories = \App\Models\Category::all();
     $tags = \App\Models\Tag::has('posts')->withCount('posts')->orderBy('posts_count','desc')->get(); //只抓有文章的tag
 @endphp
@@ -50,14 +51,9 @@
         <h6 class="text-uppercase">Latest comments </h6>
     </div>
     <ul class="widget-comments">
-        <li>Jonathan on <a href="javascript:;">Vesti blulum quis dolor </a>
-        </li>
-        <li>Jane Doe on <a href="javascript:;">Nam sed arcu tellus</a>
-        </li>
-        <li>Margarita on <a href="javascript:;">Fringilla ut vel ipsum </a>
-        </li>
-        <li>Smith on <a href="javascript:;">Vesti blulum quis dolor sit</a>
-        </li>
+        @foreach ($latestComments as $key => $comment)
+            <li>{{ $comment->name }} on <a href="/posts/{{ $comment->post->id }}">{{ $comment->post->title }}</a></li>
+        @endforeach
     </ul>
 </div>
 <!--comments widget-->
