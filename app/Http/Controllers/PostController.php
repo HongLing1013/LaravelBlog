@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBlogPost;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -47,6 +48,14 @@ class PostController extends Controller
         $post->fill($request->all());//把從create.blase.php收到的資料填入post存入$post
         $post->user_id = Auth::id(); //取得USER ID
         $post->save();//存入資料庫
+
+        $tags = explode(',' , $request->tags); //把字串轉成陣列
+        foreach($tags as $key => $tag){
+            // 新增與讀取tags
+            $model = Tag::firstOrCreate(['name' => $tag]);//如果沒有這個tag就新增
+            // 連結tags跟文章
+            $post->tags()->attach($model->id); //用post找到tag關聯性 再使model的id與tags連結
+        }
 
         return redirect('/posts/admin');
     }
