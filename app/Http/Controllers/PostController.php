@@ -80,9 +80,20 @@ class PostController extends Controller
     // Request 要養成好習慣 寫在前面
     public function update(StoreBlogPost $request , Post $post)
     {
-
         $post->fill($request->all());
         $post->save();
+
+        // 刪除原本的tags 避免重複儲存
+        $post->tags()->detach(); //detach() 會把所有關聯的資料刪除
+
+        // 新增新的tags
+        $tags = explode(',' , $request->tags);
+        foreach($tags as $key => $tag){
+            // 新增與讀取tags
+            $model = Tag::firstOrCreate(['name' => $tag]);
+            // 連結tags跟文章
+            $post->tags()->attach($model->id);
+        }
 
         return redirect('/posts/admin');
     }

@@ -36,7 +36,7 @@
 </div>
 <div class="form-group">
   <label>Tags</label>
-  <input type="text" class="form-control" name="tags" value="">
+  <input type="text" class="form-control" name="tags" value="{{ $post->tagsString() }}">
 </div>
 <div class="form-group">
   <label>Content</label>

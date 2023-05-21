@@ -24,4 +24,16 @@ class Post extends Model
         // 多對多關聯
         return $this->belongsToMany('App\Models\Tag');
     }
+
+    public function tagsString()
+    {
+        $tagsName = [];
+        foreach ($this->tags as $key => $tag){
+            $tagsName[] = $tag->name;
+        }
+
+        $tagsString = implode(',' , $tagsName);
+
+        return $tagsString;
+    }
 }
