@@ -55,10 +55,18 @@ class PostController extends Controller
         $post->user_id = Auth::id(); //取得USER ID
         $post->save();//存入資料庫
 
-        $tags = explode(',' , $request->tags); //把字串轉成陣列
+        $tags = $this->stringToTags($request->tags);
         $this->addTagsToPost($tags , $post);
 
         return redirect('/posts/admin');
+    }
+
+    private function stringToTags($string)
+    {
+        $tags = explode(',' , $string); //把字串轉成陣列
+        $tags = array_filter($tags); //過濾空值
+
+        return $tags;
     }
 
     private function addTagsToPost($tags , $post)
