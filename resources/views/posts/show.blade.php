@@ -258,7 +258,7 @@
 
                         <form method="post" action="/comments" id="form" role="form" class="blog-comments">
                             
-                            @scrf
+                            @csrf
 
                             <input type="hidden" name="post_id" value="{{ $post->id }}">
 
