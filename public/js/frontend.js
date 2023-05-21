@@ -41,6 +41,22 @@ deleteTag = function(id){
   }
 }
 
+/* 如果在編輯模式的話 切換成input */
 toggleCommentForm = function(e){
   $(e.currentTarget).closest('.comment-info').siblings('.comment-body').toggleClass('edit')
 }
+
+/* 當留言的編輯被按下時 要擋下送出 另做處理 */
+$('form.update-comment').submit(function(e){
+  e.preventDefault(); // 阻擋預設送出行為
+
+  let comment = $(e.currentTarget).find('[name="comment"]').val();
+
+  $.post($(e.currentTarget).attr('action'), {// 送出的資料
+    _method: 'put',
+    comment: comment,
+  }).done(function(data){// 成功後的處理
+    $(e.currentTarget).closest('.comment-body').toggleClass('edit');// 切換回原本的留言模式
+    $(e.currentTarget).siblings('p').html(comment);// 更新留言內容
+  });
+});

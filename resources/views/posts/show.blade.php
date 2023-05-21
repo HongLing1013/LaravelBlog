@@ -138,8 +138,8 @@
                                         <p>
                                             {{ $comment->comment }}
                                         </p>
-                                        <form action="#">
-                                            <input type="text" value="{{ $comment->comment }}">
+                                        <form class="update-comment" action="/comments/{{ $comment->id }}" method="post">
+                                            <input type="text" name="comment" value="{{ $comment->comment }}">
                                             <button>更新</button>
                                         </form>
                                     </div>
