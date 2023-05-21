@@ -46,6 +46,18 @@ toggleCommentForm = function(e){
   $(e.currentTarget).closest('.comment-info').siblings('.comment-body').toggleClass('edit')
 }
 
+deleteComment = function(e){
+  let result = confirm('確定刪除嗎?');
+  let action = $(e.currentTarget).data('action');
+  let comment = $(e.currentTarget).closest('.media');
+
+  if(result){
+    $.post(action, {_method: 'delete'}).done(function(data){
+      comment.remove();
+    })
+  }
+}
+
 /* 當留言的編輯被按下時 要擋下送出 另做處理 */
 $('form.update-comment').submit(function(e){
   e.preventDefault(); // 阻擋預設送出行為

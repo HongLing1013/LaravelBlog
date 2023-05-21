@@ -129,7 +129,7 @@
                                         <div class="comment-author">
                                             <a href="#">{{ $comment->user->name }}</a>
                                             <button class="btn btn-default" onclick="toggleCommentForm(event)">編輯</button>
-                                            <button class="btn btn-default">刪除</button>
+                                            <button class="btn btn-default" onclick="deleteComment(event)" data-action="/comments/{{ $comment->id }}">刪除</button>
                                         </div>
                                         {{ $comment->created_at->format('F d, Y').', at '.$comment->created_at->format('G:i') }}
                                     </div>
