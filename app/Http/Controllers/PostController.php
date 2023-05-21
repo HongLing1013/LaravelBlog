@@ -66,6 +66,10 @@ class PostController extends Controller
         $tags = explode(',' , $string); //把字串轉成陣列
         $tags = array_filter($tags); //過濾空值
 
+        foreach($tags as $key => $tag){
+            $tags['$key'] = trim($tag); //去除空白
+        }
+
         return $tags;
     }
 
@@ -107,7 +111,7 @@ class PostController extends Controller
         $post->tags()->detach(); //detach() 會把所有關聯的資料刪除
 
         // 新增新的tags
-        $tags = explode(',' , $request->tags);
+        $tags = $this->stringToTags($request->tags);
         $this->addTagsToPost($tags , $post);
 
         return redirect('/posts/admin');
