@@ -29,9 +29,9 @@ class PostController extends Controller
     public function indexWithCategory(Category $category)
     {
         // 只抓取該分類的文章
-        $posts = Post::where('category_id' , $category->id)->get();
+        $posts = Post::where('category_id' , $category->id)->paginate(5);
 
-        return view('posts.index' , ['post' => $posts]);
+        return view('posts.index' , ['posts' => $posts]);
     }
 
     public function indexWithTag(Tag $tag)
