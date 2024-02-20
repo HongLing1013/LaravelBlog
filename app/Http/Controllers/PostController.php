@@ -36,9 +36,9 @@ class PostController extends Controller
 
     public function indexWithTag(Tag $tag)
     {
-        $posts = $tag->posts;
+        $posts = $tag->posts->paginate(5);
 
-        return view('posts.index' , ['post' => $posts ]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
+        return view('posts.index' , ['posts' => $posts ]); //veiw 在posts資料夾下的index.blade.php 把值傳進去
    
     }
 
