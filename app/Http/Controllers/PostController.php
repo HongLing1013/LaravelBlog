@@ -80,7 +80,7 @@ class PostController extends Controller
         $tags = array_filter($tags); //過濾空值
 
         foreach($tags as $key => $tag){
-            $tags['$key'] = trim($tag); //去除空白
+            $tags[$key] = trim($tag); //去除空白
         }
 
         return $tags;
